@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import ROUTES from "../app/routes";
 import { selectAllTopics } from "../features/topics/topicsSlice";
 import { addQuiz } from "../features/quizzes/quizzesSlice";
+import { addCard } from "../features/cards/cardsSlice";
 
 export default function NewQuizForm() {
   const [name, setName] = useState("");
@@ -22,13 +23,17 @@ export default function NewQuizForm() {
 
     const cardIds = [];
 
-    // create the new cards here and add each card's id to cardIds
-    // create the new quiz here
+    cards.forEach((card) => {
+      let cardId = uuidv4();
+      cardIds.push(cardId);
+      dispatch(addCard({ ...card, id: cardId }));
+    });
 
     // Don't forget that we changed this from quizId to id, hoping this is correct
-    const id = uuidv4();
-    dispatch(addQuiz({ id, name, topicId, cardIds }));
-    // console.log({ id, name, topicId, cardIds });
+
+    const quizId = uuidv4();
+
+    dispatch(addQuiz({ quizId, name, topicId, cardIds }));
 
     navigate(ROUTES.quizzesRoute());
   };

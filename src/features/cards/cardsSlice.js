@@ -4,13 +4,14 @@ export const cardsSlice = createSlice({
   name: "cards",
   initialState: { cards: {} },
   reducers: {
-    addcard: (state, action) => {
+    addCard: (state, action) => {
       const { id, front, back } = action.payload;
       state.cards[id] = {
         id,
         front,
         back,
       };
+      console.log(id, front, back);
     },
   },
 });
@@ -18,5 +19,5 @@ export const cardsSlice = createSlice({
 // const mySelectorByName = (name) => (state) => state.items.find(item.name === name));
 export const selectCardById = (id) => (state) => state.cards.cards[id];
 
-export const { addcard } = cardsSlice.actions;
+export const { addCard } = cardsSlice.actions;
 export default cardsSlice.reducer;
