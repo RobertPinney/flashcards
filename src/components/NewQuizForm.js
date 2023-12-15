@@ -29,11 +29,7 @@ export default function NewQuizForm() {
       dispatch(addCard({ ...card, id: cardId }));
     });
 
-    // Don't forget that we changed this from quizId to id, hoping this is correct
-
-    const quizId = uuidv4();
-
-    dispatch(addQuiz({ quizId, name, topicId, cardIds }));
+    dispatch(addQuiz({ id: uuidv4(), name, topicId, cardIds }));
 
     navigate(ROUTES.quizzesRoute());
   };

@@ -9,7 +9,7 @@ export default function Card({ id }) {
   return (
     <li>
       <button className="card" onClick={(e) => setFlipped(!flipped)}>
-        {flipped ? card.back : card.front}
+        {flipped ? card[id].back : card[id].front}
       </button>
     </li>
   );
